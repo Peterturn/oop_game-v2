@@ -32,12 +32,12 @@ getter returns the current value of 'this.phrases' and starts at null and once t
     game.currentPhrase = phrase;
     console.log(phrase.phrase);
   }
-   // handleInteraction(){
-   //   for(let i=0; i <keys.length; i++)
-   //   if(keys[i].innerText === valueOf){
-   //     keys[i].disabled = 'true';
-   //     keys[i].style.opacity = '0.5';
-   //
-   //   }
-   // }
+   handleInteraction(){
+     for(let i=0; i <keys.length; i++)
+     if(keys[i].innerText === valueOf){
+       keys[i].disabled = 'true';
+       keys[i].style.opacity = '0.5';
+
+     }
+   }
 }

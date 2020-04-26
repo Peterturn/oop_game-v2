@@ -43,18 +43,19 @@ class Phrase{
       }
     }
   showMatchedLetter(){
-    // let matchingLetters = (letter)=> letter === valueOf;
-    // hiddenLetters.filter(matchingLetters);
-    // console.log();
-
-
-  //forLoop runs though the 'li' array and shows matched letter on click event.
-      for (let i=0; i <hiddenLetters.length; i++){
-        if(hiddenLetters[i].innerText === valueOf ){
-          console.log('true');
-          hiddenLetters[i].className = 'show';
-        }
+    //forLoop runs though the 'li' array and shows matched letter on click event.
+    for (let i=0; i <hiddenLetters.length; i++){
+      if(hiddenLetters[i].innerText === valueOf ){
+        console.log('true');
+        hiddenLetters[i].className = 'show';
       }
-
+    }
+  /*the 2nd forLoop double checks to make sure a letter wasn't missed. Was having a bug were double letters like in the word "apple" only the first "p" would appear.*/
+    for (let j=0; j <hiddenLetters.length; j++){
+      if(hiddenLetters[j].innerText === valueOf ){
+        console.log('true');
+        hiddenLetters[j].className = 'show';
+      }
+    }
   }
 }

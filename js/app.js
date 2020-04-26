@@ -14,6 +14,7 @@ const startScreen = document.getElementById('overlay');
 // const hiddenLetters returns an array of HTML 'li' items.
 const hiddenLetters = document.getElementsByClassName('hide letter');
 let clickedLettersArr = []
+const revealedLetter = document.getElementsByClassName('show');
 
 startBtn.addEventListener('click', () => {
   game.startGame();
@@ -22,11 +23,8 @@ startBtn.addEventListener('click', () => {
 //listens for user interactions
 virtualBoardKeys.addEventListener('click',(e)=>{
   valueOf = e.target.textContent;
-  //array captures the clicked letters for later use.
-  clickedLettersArr.push(valueOf);
   //console.log(valueOf);
-  console.log(clickedLettersArr);
   phrase.checkLetter();
   phrase.showMatchedLetter();
-  //game.handleInteraction();
+  game.handleInteraction();
 })
