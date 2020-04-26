@@ -5,7 +5,6 @@
 
 const game = new Game();
 const phrase = new Phrase(game.randomPhrase);
-let valueOf;
 
 const virtualBoardKeys = document.getElementById('qwerty');
 const keys = document.getElementsByClassName('key');
@@ -21,10 +20,10 @@ startBtn.addEventListener('click', () => {
 });
 
 //listens for user interactions
-virtualBoardKeys.addEventListener('click',(e)=>{
-  valueOf = e.target.textContent;
+virtualBoardKeys.addEventListener('click', (e) => {
+  let valueOf = e.target.textContent;
   //console.log(valueOf);
-  phrase.checkLetter();
-  phrase.showMatchedLetter();
-  game.handleInteraction();
+  phrase.checkLetter(valueOf);
+  phrase.showMatchedLetter(valueOf);
+  game.handleInteraction(valueOf);
 })
