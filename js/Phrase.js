@@ -51,11 +51,11 @@ class Phrase{
       }
     }
   /*the 2nd forLoop double checks to make sure a letter wasn't missed. Was having a bug were double letters like in the word "apple" only the first "p" would appear.*/
-    for (let j=0; j <hiddenLetters.length; j++){
-      if(hiddenLetters[j].innerText === valueOf ){
-        console.log('true');
-        hiddenLetters[j].className = 'show';
-      }
-    }
+    // for (let j=0; j <hiddenLetters.length; j++){
+    //   if(hiddenLetters[j].innerText === valueOf ){
+    //     console.log('true');
+    //     hiddenLetters[j].className = 'show';
+    //   }
+    // }
   }
 }

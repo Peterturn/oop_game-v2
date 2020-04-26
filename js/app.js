@@ -12,7 +12,6 @@ const startBtn = document.getElementById('btn__reset');
 const startScreen = document.getElementById('overlay');
 // const hiddenLetters returns an array of HTML 'li' items.
 const hiddenLetters = document.getElementsByClassName('hide letter');
-let clickedLettersArr = []
 const revealedLetter = document.getElementsByClassName('show');
 
 startBtn.addEventListener('click', () => {
