@@ -30,7 +30,7 @@ class Phrase{
 
   /*checkLetter() checks if a letter is in the phrase the game phrase
   and returns a boolean value.*/
-  checkLetter(){
+  checkLetter(valueOf){
             //console.log(hiddenLetters);
     //forLoop runs though the 'li' array and returns a boolean value.
       for (let i=0; i <hiddenLetters.length; i++){
@@ -42,7 +42,7 @@ class Phrase{
         }
       }
     }
-  showMatchedLetter(){
+  showMatchedLetter(valueOf){
     //forLoop runs though the 'li' array and shows matched letter on click event.
     for (let i=0; i <hiddenLetters.length; i++){
       if(hiddenLetters[i].innerText === valueOf ){

@@ -32,7 +32,7 @@ getter returns the current value of 'this.phrases' and starts at null and once t
     game.currentPhrase = phrase;
     console.log(phrase.phrase);
   }
-   handleInteraction(){
+   handleInteraction(valueOf){
      for(let i=0; i <keys.length; i++)
      if(keys[i].innerText === valueOf){
        keys[i].disabled = 'true';
