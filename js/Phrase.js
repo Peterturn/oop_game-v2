@@ -43,9 +43,9 @@ class Phrase{
       }
     }
   showMatchedLetter(){
-    let matchingLetters = (letter)=> letter === valueOf;
-    hiddenLetters.filter(matchingLetters);
-    console.log();
+    // let matchingLetters = (letter)=> letter === valueOf;
+    // hiddenLetters.filter(matchingLetters);
+    // console.log();
 
 
   //forLoop runs though the 'li' array and shows matched letter on click event.
