@@ -32,7 +32,7 @@ class Phrase{
   and returns a boolean value.*/
   checkLetter(valueOf){
          if (doSomething.test(valueOf)){
-            console.log()
+            console.log('true');
              return true;
          } else {
              return false;
