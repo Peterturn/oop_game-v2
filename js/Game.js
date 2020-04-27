@@ -36,13 +36,13 @@ getter returns the current value of 'this.phrases' and starts at null and once t
     for (let i=0; i <hiddenLetters.length; i++){
     correctLettersArr.push(hiddenLetters[i].innerText);
     }
-    correctLettersArrJoined = correctLettersArr.join(' ');
-    doSomething = `/[${correctLettersArrJoined}]`;
+    correctLettersArrJoined = correctLettersArr.join('');
+    doSomething = `[${correctLettersArrJoined}]`;
   }
 
   handleInteraction(valueOf){
     //console.log('test');
-    if(phrase.checkLetter()){
+    if(phrase.checkLetter(valueOf)){
         valueOf.className = 'madSkills';
         valueOf.disabled = true;
         valueOf.style.opacity = '0.5';
