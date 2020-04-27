@@ -30,8 +30,8 @@ class Phrase{
 
   /*checkLetter() checks if a letter is in the phrase the game phrase
   and returns a boolean value.*/
-  checkLetter(valueOf) {
-         if (doSomething.test(valueOf.textContent)) {
+  checkLetter(valueOf){
+         if (doSomething.test(valueOf)){
              return true;
          } else {
              return false;
