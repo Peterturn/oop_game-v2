@@ -32,6 +32,7 @@ class Phrase{
   and returns a boolean value.*/
   checkLetter(valueOf){
          if (doSomething.test(valueOf)){
+            console.log()
              return true;
          } else {
              return false;
@@ -47,7 +48,7 @@ class Phrase{
       }
     }
 
-  /*the 2nd forLoop passesover the new list of hiddenLetters. The second loop is there for dynamic prgraming should someone add a double letter word. If 2 identical letter i.e. 'tt, ss...' are present in the hidden phrase the fist letter is removed from the array and the new position of the next letter is in the current [i]. In order to select the duplicate that are next to each other the a second iteration is needed.  */
+  /*the 2nd forLoop passesover the new list of hiddenLetters. The second loop is there for dynamic programing should someone add a double letter word. If 2 identical letter i.e. 'tt, ss...' are present in the hidden phrase the fist letter is removed from the array and the new position of the next letter is in the current [i]. In order to select the duplicate that are next to each other the a second iteration is needed.  */
     for (let j=0; j <hiddenLetters.length; j++){
       if(hiddenLetters[j].innerText === valueOf.textContent ){
         //console.log('true');
