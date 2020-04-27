@@ -31,7 +31,7 @@ startBtn.addEventListener('click', () => {
 //listens for user interactions
 virtualBoardKeys.addEventListener('click',(e)=>{
   let valueOf = e.target;
-  
+
   //console.log(valueOf);
   phrase.showMatchedLetter(valueOf);
   game.handleInteraction(valueOf);
