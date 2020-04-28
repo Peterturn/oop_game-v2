@@ -6,6 +6,7 @@
 class Game {
   constructor(){
     this.missed = 0;
+    this.correctKeys = 0;
     //a the selection of a phrase objects for the game.
     this.phrases =[{phrase:'Money Talks'}, {phrase: 'Love Eat Pray'}, {phrase: 'Show me the money'}, {phrase:'raining cats and dogs'}, {phrase: 'Holy Cow Batman'}, {phrase: 'Pray Often'} ];
     this.activePhrase = null;
@@ -42,56 +43,75 @@ getter returns the current value of 'this.phrases' and starts at null and once t
     for (let i=0; i <hiddenLetters.length; i++){
     correctLettersArr.push(hiddenLetters[i].innerText);
     }
-    //keyRow 1-3 sets an ID to select for the className reset the event Listener changes if the player clicks on the div-line and not the "key btn".
-    keyRows[0].id = 'keyrow1';
-    keyRows[1].id = 'keyrow2';
-    keyRows[2].id = 'keyrow3';
+
 
     //between 'correctLettersArrJoined' and 'doSomething' a string is created for the checkLetter methode to test and create a boolean value.
     correctLettersArrJoined = correctLettersArr.join('');
     doSomething = `[${correctLettersArrJoined}]`;
   }
 
-  //removes a heart
+  //removes a liveHeart img and replaces it with the lostHeart img.
   removeLife(){
     const liveHearts = document.querySelectorAll("img");
     if(this.missed === 1){
       liveHearts[4].src = 'images/lostHeart.png';
-      console.log('removeLife1');
+    //  console.log('removeLife1');
     }
     if(this.missed === 2){
       liveHearts[3].src = 'images/lostHeart.png';
-      console.log('removeLife2');
+      //console.log('removeLife2');
     }
     if(this.missed === 3){
       liveHearts[2].src = 'images/lostHeart.png';
-      console.log('removeLife3');
+      //console.log('removeLife3');
     }
     if(this.missed === 4){
       liveHearts[1].src = 'images/lostHeart.png';
-      console.log('removeLife4');
+      //console.log('removeLife4');
     }
     if(this.missed === 5){
       liveHearts[0].src = 'images/lostHeart.png';
-      console.log('removeLife5');
+      //console.log('removeLife5');
+      this.gameOver();
     }
   }
+  gameOver(){
+    if(this.missed === 5){
+      startScreen.className = 'lose';
+      startScreen.style.display = '';
+    }
+    else{
+      startScreen.className = 'win';
+      startScreen.style.display = '';
+    }
+  }
+
+  //----Stuck here. neeed to figure out how to match exact string to exact string.
+  //this.correct keys only works if no repeating numbers... create reduced array?
+  //or take reduced array and try to use match()
+  //test value against className('show') if show.length = correctLettersArrJoined.length
+  checkForWin(){
+
+      if (letterShown.length === correctLettersArrJoined.length){
+        this.gameOver();
+      }
+
+  }
+
+  //Handles game interactions
   handleInteraction(valueOf){
-    //const keyrow 1-3 set an ID to select for the className reset the event Listener changes if the player clicks on the div-line and not the "key btn".
-    const keyrow1 = document.getElementById('keyrow1');
-    const keyrow2 = document.getElementById('keyrow2');
-    const keyrow3 = document.getElementById('keyrow3');
+
+    phrase.showMatchedLetter(valueOf);
     if(phrase.checkLetter(valueOf)){
         valueOf.className = 'chosen';
         valueOf.disabled = true;
+        this.correctKeys += 1;
     }else{
         valueOf.className = 'wrong';
         valueOf.disabled = true;
-        //keyrow 1-3 reset the className the event Listener changes if the player clicks on the div lin and not the "key btn".
-        keyrow1.className = 'keyrow';
-        keyrow2.className = 'keyrow';
-        keyrow3.className = 'keyrow';
     }
+
+
     //const selects className 'wrong'.
     const keysWrong = document.getElementsByClassName('wrong');
     /*For-Loop runs throught the keys that have className 'wrong' and adds to the count of 'this.missed'. */
@@ -100,7 +120,7 @@ getter returns the current value of 'this.phrases' and starts at null and once t
       console.log(this.missed);
     }
     this.removeLife();
-
+    this.checkForWin();
   }
 
 }

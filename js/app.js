@@ -7,7 +7,7 @@
 const game = new Game();
 //used to construct and set the current game phrase
 const phrase = new Phrase(game.randomPhrase);
-
+const keyBtn = document.querySelectorAll('#qwerty div button');
 const virtualBoardKeys = document.getElementById('qwerty');
 const keys = document.getElementsByClassName('key');
 const keyRows = document.getElementsByClassName('keyrow');
@@ -23,17 +23,18 @@ let doSomething;
 
 
                     //_____START GAME_____//
-
 startBtn.addEventListener('click', () => {
   game.startGame();
 });
 
 //listens for user interactions
-virtualBoardKeys.addEventListener('click',(e)=>{
-  let valueOf = e.target;
-
-  //console.log(valueOf);
-  phrase.showMatchedLetter(valueOf);
-  game.handleInteraction(valueOf);
-  //console.log(`lost hearts = ${game.missed}`);
-})
+document.querySelectorAll('.key').forEach(item => {
+  item.addEventListener('click', event => {
+    let valueOf = event.target;
+    //console.log(valueOf);
+    phrase.showMatchedLetter(valueOf);
+    game.handleInteraction(valueOf);
+    //console.log(`lost hearts = ${game.missed}`);
+    })
+  })
+  let letterShown = document.getElementsByClassName('show');

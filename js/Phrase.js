@@ -39,10 +39,10 @@ class Phrase{
          }
      }
 
-  showMatchedLetter(valueOf){
+  showMatchedLetter(text){
     //forLoop runs though the 'li' array and shows matched letter on click event.
     for (let i=0; i <hiddenLetters.length; i++){
-      if(hiddenLetters[i].innerText === valueOf.textContent){
+      if(hiddenLetters[i].innerText === text.textContent){
         //console.log('true');
         hiddenLetters[i].className = 'show';
       }
