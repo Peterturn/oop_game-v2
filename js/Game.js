@@ -29,33 +29,51 @@ getter returns the current value of 'this.phrases' and starts at null and once t
 
 //Add Notes
   startGame(){
+    //turns off the start game display
     startScreen.style.display = 'none';
+    //adds phrase to display
     phrase.addPhraseToDisplay();
+    //sets currentPhrase
     game.currentPhrase = phrase;
+
+    //Logs the phrase to the console.
     console.log(phrase.phrase);
+    /*for-loop pushes letters to an empty array which then .joined by the 'correctLettersArrJoined' and put into a string for easy testing by the checkLetter methode.*/
     for (let i=0; i <hiddenLetters.length; i++){
     correctLettersArr.push(hiddenLetters[i].innerText);
     }
+    //keyRow 1-3 sets an ID to select for the className reset the event Listener changes if the player clicks on the div-line and not the "key btn".
+    keyRows[0].id = 'keyrow1';
+    keyRows[1].id = 'keyrow2';
+    keyRows[2].id = 'keyrow3';
+
+    //between 'correctLettersArrJoined' and 'doSomething' a string is created for the checkLetter methode to test and create a boolean value.
     correctLettersArrJoined = correctLettersArr.join('');
     doSomething = `[${correctLettersArrJoined}]`;
   }
 
+  //removes a heart
+  removeLife(){
+    if(!phrase.checkLetter(valueOf)){
+
+    }
+  }
   handleInteraction(valueOf){
-    //console.log('test');
+    //const keyrow 1-3 set an ID to select for the className reset the event Listener changes if the player clicks on the div-line and not the "key btn".
+    const keyrow1 = document.getElementById('keyrow1');
+    const keyrow2 = document.getElementById('keyrow2');
+    const keyrow3 = document.getElementById('keyrow3');
     if(phrase.checkLetter(valueOf)){
-        valueOf.className = 'madSkills';
+        valueOf.className = 'chosen';
         valueOf.disabled = true;
-        valueOf.style.opacity = '0.5';
-      }else{
+    }else{
         valueOf.className = 'wrong';
         valueOf.disabled = true;
-      }
-      // if(correctLettersArr[k] === valueOf.textContent){
-      //   //console.log('true');
-      //   valueOf.className = 'correct';
-      //   valueOf.disabled = true;
-      //   valueOf.style.opacity = '0.5';
-      // }
+        //keyrow 1-3 reset the className the event Listener changes if the player clicks on the div lin and not the "key btn".
+        keyrow1.className = 'keyrow';
+        keyrow2.className = 'keyrow';
+        keyrow3.className = 'keyrow';
     }
+  }
 
 }

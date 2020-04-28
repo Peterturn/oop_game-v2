@@ -31,8 +31,8 @@ class Phrase{
   /*checkLetter() checks if a letter is in the phrase the game phrase
   and returns a boolean value.*/
   checkLetter(valueOf){
-         if (doSomething.test(valueOf)){
-            console.log('true');
+         if (doSomething.match(valueOf.textContent)){
+            //console.log('true');
              return true;
          } else {
              return false;

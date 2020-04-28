@@ -10,6 +10,7 @@ const phrase = new Phrase(game.randomPhrase);
 
 const virtualBoardKeys = document.getElementById('qwerty');
 const keys = document.getElementsByClassName('key');
+const keyRows = document.getElementsByClassName('keyrow');
 const startBtn = document.getElementById('btn__reset');
 const startScreen = document.getElementById('overlay');
 // const hiddenLetters returns an array of HTML 'li' items.
