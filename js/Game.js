@@ -54,8 +54,26 @@ getter returns the current value of 'this.phrases' and starts at null and once t
 
   //removes a heart
   removeLife(){
-    if(!phrase.checkLetter(valueOf)){
-
+    const liveHearts = document.querySelectorAll("img");
+    if(this.missed === 1){
+      liveHearts[4].src = 'images/lostHeart.png';
+      console.log('removeLife1');
+    }
+    if(this.missed === 2){
+      liveHearts[3].src = 'images/lostHeart.png';
+      console.log('removeLife2');
+    }
+    if(this.missed === 3){
+      liveHearts[2].src = 'images/lostHeart.png';
+      console.log('removeLife3');
+    }
+    if(this.missed === 4){
+      liveHearts[1].src = 'images/lostHeart.png';
+      console.log('removeLife4');
+    }
+    if(this.missed === 5){
+      liveHearts[0].src = 'images/lostHeart.png';
+      console.log('removeLife5');
     }
   }
   handleInteraction(valueOf){
@@ -74,6 +92,15 @@ getter returns the current value of 'this.phrases' and starts at null and once t
         keyrow2.className = 'keyrow';
         keyrow3.className = 'keyrow';
     }
+    //const selects className 'wrong'.
+    const keysWrong = document.getElementsByClassName('wrong');
+    /*For-Loop runs throught the keys that have className 'wrong' and adds to the count of 'this.missed'. */
+    for (let i=0; i <keysWrong.length; i++){
+      this.missed = keysWrong.length;
+      console.log(this.missed);
+    }
+    this.removeLife();
+
   }
 
 }

@@ -16,7 +16,6 @@ const startScreen = document.getElementById('overlay');
 // const hiddenLetters returns an array of HTML 'li' items.
 const hiddenLetters = document.getElementsByClassName('hide letter');
 const revealedLetter = document.getElementsByClassName('show');
-const liveHearts = document.getElementsByClassName("tries");
 let correctLettersArr = [];
 let correctLettersArrJoined;
 let doSomething;
