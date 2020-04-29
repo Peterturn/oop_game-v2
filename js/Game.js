@@ -11,6 +11,7 @@ class Game {
     this.activePhrase = null;
     this.correctGuess = true;
   }
+  
 // A randomPhrase getter from the array of phrases
   get randomPhrase(){
     var randomNum = Math.floor(Math.random() * this.phrases.length );
@@ -89,7 +90,6 @@ class Game {
       phrase.removePhrase();
       phrase.removeClickesOnLetters();
       this.resetHearts();
-      this.activePhrase = null;
     }
   }
 
