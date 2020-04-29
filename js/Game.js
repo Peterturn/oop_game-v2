@@ -6,9 +6,8 @@
 class Game {
   constructor(){
     this.missed = 0;
-    this.correctKeys = 0;
     //a the selection of a phrase objects for the game.
-    this.phrases =[{phrase:'Money Talks'}, {phrase: 'Love Eat Pray'}, {phrase: 'Show me the money'}, {phrase:'raining cats and dogs'}, {phrase: 'Holy Cow Batman'}, {phrase: 'Pray Often'} ];
+    this.phrases =[{phrase:'Money Talks'}, {phrase: 'keep it simple'}, {phrase: 'Show me the money'}, {phrase:'let it go'}, {phrase: 'Holy Cow Batman'}, {phrase: 'Pray Often'} ];
     this.activePhrase = null;
     this.correctGuess = true;
   }
@@ -17,15 +16,6 @@ class Game {
     var randomNum = Math.floor(Math.random() * this.phrases.length );
     var grabPhrase = this.phrases[randomNum].phrase;
     return grabPhrase;
-  }
-/*
-getter returns the current value of 'this.phrases' and starts at null and once the addEventListener is triggered the 'setter' will then update the  'this.activePhrase.'
-*/
-  get currentPhrase(){
-    return this.activePhrase;
-  }
-  set currentPhrase(actPhrase){
-    this.activePhrase = actPhrase;
   }
 
 //Add Notes
@@ -75,27 +65,38 @@ getter returns the current value of 'this.phrases' and starts at null and once t
       this.gameOver();
     }
   }
+
+  resetHearts(){
+    const liveHearts = document.querySelectorAll("img");
+      for (let i = 0; i < liveHearts.length; i++){
+        liveHearts[i].src = 'images/liveHeart.png';
+        this.missed = 0;
+      }
+  }
+  //Add notes
   gameOver(){
     if(this.missed === 5){
       startScreen.className = 'lose';
       startScreen.style.display = '';
+      phrase.removePhrase();
+      phrase.removeClickesOnLetters();
+      this.resetHearts();
     }
     else{
       startScreen.className = 'win';
       startScreen.style.display = '';
+      phrase.removePhrase();
+      phrase.removeClickesOnLetters();
+      this.resetHearts();
     }
   }
 
-  //----Stuck here. neeed to figure out how to match exact string to exact string.
-  //this.correct keys only works if no repeating numbers... create reduced array?
-  //or take reduced array and try to use match()
-  //test value against className('show') if show.length = correctLettersArrJoined.length
+//add notes
   checkForWin(){
 
       if (letterShown.length === correctLettersArrJoined.length){
         this.gameOver();
       }
-
   }
 
   //Handles game interactions
@@ -105,7 +106,6 @@ getter returns the current value of 'this.phrases' and starts at null and once t
     if(phrase.checkLetter(valueOf)){
         valueOf.className = 'chosen';
         valueOf.disabled = true;
-        this.correctKeys += 1;
     }else{
         valueOf.className = 'wrong';
         valueOf.disabled = true;
