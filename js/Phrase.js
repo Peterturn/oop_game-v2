@@ -8,6 +8,7 @@ class Phrase{
 
   //  Methode to display phrase on game board
   addPhraseToDisplay(){
+    const phraseSection = document.getElementById('phrase').firstElementChild;
     const phraseSplit = this.phrase.split('');
     //console.log(phraseSplit);
     //loop that adds className for each 'letter' and 'space.' It then appends each as an 'li' to the 'ul' in the phrase section of the html.

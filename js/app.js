@@ -8,7 +8,7 @@ const game = new Game();
 //used to construct and set the current game phrase
 const phrase = new Phrase(game.randomPhrase);
 const phraseUl = document.getElementById('phrase');
-const phraseSection = document.getElementById('phrase').firstElementChild;
+
 const keyBtn = document.querySelectorAll('#qwerty div button');
 const virtualBoardKeys = document.getElementById('qwerty');
 const keys = document.getElementsByClassName('key');
