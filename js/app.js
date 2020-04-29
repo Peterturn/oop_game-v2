@@ -4,8 +4,9 @@
                               //_____VAR LIST_____//
 
 //on click event is used to set up the new game
-const game = new Game();
+let game = new Game();
 //used to construct and set the current game phrase
+
 let aPhrase = new Phrase(game.randomPhrase);
 const phraseUl = document.getElementById('phrase');
 
@@ -28,13 +29,13 @@ let doSomething;
 startBtn.addEventListener('click', () => {
   game.startGame();
 });
-
+                  //_____PLAY GAME_____//
 //listens for user interactions
 document.querySelectorAll('.key').forEach(item => {
   item.addEventListener('click', event => {
     let valueOf = event.target;
     //console.log(valueOf);
-    aPhrase.showMatchedLetter(valueOf);
+
     game.handleInteraction(valueOf);
     //console.log(`lost hearts = ${game.missed}`);
     })

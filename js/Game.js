@@ -20,6 +20,7 @@ class Game {
   }
 
 //Add Notes
+
   startGame(){
     //turns off the start game display
     startScreen.style.display = 'none';
