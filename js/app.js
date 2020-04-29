@@ -6,7 +6,7 @@
 //on click event is used to set up the new game
 const game = new Game();
 //used to construct and set the current game phrase
-const phrase = new Phrase(game.randomPhrase);
+let aPhrase = new Phrase(game.randomPhrase);
 const phraseUl = document.getElementById('phrase');
 
 const keyBtn = document.querySelectorAll('#qwerty div button');
@@ -34,7 +34,7 @@ document.querySelectorAll('.key').forEach(item => {
   item.addEventListener('click', event => {
     let valueOf = event.target;
     //console.log(valueOf);
-    phrase.showMatchedLetter(valueOf);
+    aPhrase.showMatchedLetter(valueOf);
     game.handleInteraction(valueOf);
     //console.log(`lost hearts = ${game.missed}`);
     })

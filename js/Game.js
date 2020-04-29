@@ -24,12 +24,12 @@ class Game {
     //turns off the start game display
     startScreen.style.display = 'none';
     //adds phrase to display
-    phrase.addPhraseToDisplay();
+    aPhrase.addPhraseToDisplay();
     // //sets currentPhrase
     // game.currentPhrase = phrase;
 
     //Logs the phrase to the console.
-    console.log(phrase.phrase);
+    console.log(aPhrase.phrase);
     /*for-loop pushes letters to an empty array which then .joined by the 'correctLettersArrJoined' and put into a string for easy testing by the checkLetter methode.*/
     for (let i=0; i <hiddenLetters.length; i++){
     correctLettersArr.push(hiddenLetters[i].innerText);
@@ -79,19 +79,20 @@ class Game {
     if(this.missed === 5){
       startScreen.className = 'lose';
       startScreen.style.display = '';
-      phrase.removePhrase();
-      phrase.removeClickesOnLetters();
+      aPhrase.removePhrase();
+      aPhrase.removeClickesOnLetters();
       this.resetHearts();
       correctLettersArr = [];
-      new Phrase(this.randomPhrase);
+
     }
     else{
       startScreen.className = 'win';
       startScreen.style.display = '';
-      phrase.removePhrase();
-      phrase.removeClickesOnLetters();
+      aPhrase.removePhrase();
+      aPhrase.removeClickesOnLetters();
       this.resetHearts();
       correctLettersArr = [];
+
     }
   }
 
@@ -106,8 +107,8 @@ class Game {
   //Handles game interactions
   handleInteraction(valueOf){
 
-    phrase.showMatchedLetter(valueOf);
-    if(phrase.checkLetter(valueOf)){
+    aPhrase.showMatchedLetter(valueOf);
+    if(aPhrase.checkLetter(valueOf)){
         valueOf.className = 'chosen';
         valueOf.disabled = true;
     }else{
