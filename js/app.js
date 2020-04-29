@@ -3,11 +3,13 @@
  * app.js */
                               //_____VAR LIST_____//
 
+                              //NEW CLASS CREATION//
 //on click event is used to set up the new game
 let game = new Game();
 //used to construct and set the current game phrase
-
 let aPhrase = new Phrase(game.randomPhrase);
+
+
 const phraseUl = document.getElementById('phrase');
 
 const keyBtn = document.querySelectorAll('#qwerty div button');
@@ -29,15 +31,17 @@ let doSomething;
 startBtn.addEventListener('click', () => {
   game.startGame();
 });
+
                   //_____PLAY GAME_____//
 //listens for user interactions
 document.querySelectorAll('.key').forEach(item => {
   item.addEventListener('click', event => {
-    let valueOf = event.target;
-    //console.log(valueOf);
 
+    let valueOf = event.target;
     game.handleInteraction(valueOf);
-    //console.log(`lost hearts = ${game.missed}`);
-    })
+
+  });
   })
+
+  // Gets letters Shown as they are changed in the CSS
   let letterShown = document.getElementsByClassName('show');
