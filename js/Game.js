@@ -81,6 +81,7 @@ class Game {
       phrase.removePhrase();
       phrase.removeClickesOnLetters();
       this.resetHearts();
+      new Phrase(this.randomPhrase);
     }
     else{
       startScreen.className = 'win';
@@ -88,6 +89,7 @@ class Game {
       phrase.removePhrase();
       phrase.removeClickesOnLetters();
       this.resetHearts();
+      this.activePhrase = null;
     }
   }
 
