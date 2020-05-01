@@ -41,8 +41,12 @@ getRandomPhrase(){
     this.activePhrase.addPhraseToDisplay();
     console.log(this.activePhrase);
 
-//creates an array and then .join('')s it for checkForWin()
-//see checkForWin() Game.js line 77 in connection to this line of code
+/*creates an array and then .join('')s it for checkForWin()
+*see checkForWin() Game.js line 85 in connection to this line of code
+*hiddenLetters app.js line 16,
+*correctLettersArr (app.js line 11)
+*correctLettersArrJoined (app.js line 12)
+*/
     for (let i=0; i <hiddenLetters.length; i++){
     correctLettersArr.push(hiddenLetters[i].innerText);
     }
@@ -55,10 +59,10 @@ getRandomPhrase(){
 * @param (HTMLButtonElement) button - The clicked button element
 */
   handleInteraction(eTarget){
-    this.activePhrase.checkLetter(eTarget);
-    this.activePhrase.showMatchedLetter(eTarget);
-    this.checkForWin();
-    this.removeLife(eTarget);
+    this.activePhrase.checkLetter(eTarget); // Phrase.js line 33
+    this.activePhrase.showMatchedLetter(eTarget); // Phrase.js line 45
+
+    //changes the className of virtual keyboard letter as user selects them.
     if(this.activePhrase.checkLetter(eTarget)){
      eTarget.className = 'chosen';
      eTarget.disabled = true;
@@ -66,6 +70,9 @@ getRandomPhrase(){
      eTarget.className = 'wrong';
      eTarget.disabled = true;
      }
+
+     this.checkForWin(); //Game.js line 85
+     this.removeLife(eTarget); //Game.js line 96
 
   }
 
@@ -77,7 +84,6 @@ getRandomPhrase(){
 won */
   checkForWin() {
     if (letterShown.length === correctLettersArrJoined.length){
-          console.log(`checkforwin(): you win`);
           this.gameOver();
       }
     }
@@ -122,18 +128,18 @@ won */
       overlay.className = 'lose';
       overlay.style.display = '';
       this.removePhrase();
-      this.removeClickesOnLetters();
       this.resetHearts();
       correctLettersArr = [];
+      this.removeClickesOnLetters();
     }
     else{
       gameOverMsg.innerText = 'You Win! Wanna Play Again?';
       overlay.className = 'win';
       overlay.style.display = '';
       this.removePhrase();
-      this.removeClickesOnLetters();
       this.resetHearts();
       correctLettersArr = [];
+      this.removeClickesOnLetters();
     }
   }
 

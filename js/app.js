@@ -16,11 +16,10 @@ const startButton = document.getElementById('btn__reset');
 const hiddenLetters = document.getElementsByClassName('hide letter');
 const overlay = document.getElementById('overlay');
 const phraseUl = document.getElementById('phrase');
-// Gets letters Shown as they are changed in the CSS (app.js line 46)
-let letterShown;
+
 
               //____________EVENT HANDLERS____________//
-              
+
                       //_____START GAME_____//
 /**
 *EventListener attached to 'btn__reset' to start game Game.js line 36
@@ -43,5 +42,5 @@ document.querySelectorAll('.key').forEach(item => {
   })
 
 
-// Gets letters Shown as they are changed in the CSS
-letterShown = document.getElementsByClassName('show');
+// Gets letters Shown as they are changed in the CSS (app.js line 46)
+let letterShown = document.getElementsByClassName('show');
