@@ -2,7 +2,6 @@
  * Project 4 - OOP Game App
  * Game.js */
 
-
 /**
 * A game consturctor to handle the creation of the game
 */
@@ -83,6 +82,7 @@ getRandomPhrase(){
  * @return {boolean} True if game has been won, false if game wasn't
 won */
   checkForWin() {
+    //let 'letterShown' see app.js line 46
     if (letterShown.length === correctLettersArrJoined.length){
           this.gameOver();
       }
@@ -112,7 +112,7 @@ won */
     }
     if(this.missed === 5){
       liveHearts[0].src = 'images/lostHeart.png';
-      this.gameOver(true);
+      this.gameOver(true); // Game.js line 125
     }
   }
 
@@ -127,19 +127,19 @@ won */
       gameOverMsg.innerText = "You Lost. No Worries Try Again!";
       overlay.className = 'lose';
       overlay.style.display = '';
-      this.removePhrase();
-      this.resetHearts();
-      correctLettersArr = [];
-      this.removeClickesOnLetters();
+      this.removePhrase(); //Game.js line 154
+      this.resetHearts(); //Game.js line 179
+      correctLettersArr = []; //app.js line 11
+      this.removeClickesOnLetters(); //Game.js line 165
     }
     else{
       gameOverMsg.innerText = 'You Win! Wanna Play Again?';
       overlay.className = 'win';
       overlay.style.display = '';
-      this.removePhrase();
-      this.resetHearts();
-      correctLettersArr = [];
-      this.removeClickesOnLetters();
+      this.removePhrase(); //Game.js line 154
+      this.resetHearts(); //Game.js line 179
+      correctLettersArr = []; //app.js line 11
+      this.removeClickesOnLetters(); //Game.js line 165
     }
   }
 
@@ -152,6 +152,7 @@ won */
 */
   removePhrase(){
     const createUl = document.createElement('ul');
+    //phraseUl see app.js line 18
     phraseUl.removeChild(phraseUl.firstElementChild);
     phraseUl.appendChild(createUl);
   }
@@ -163,7 +164,6 @@ won */
 */
   removeClickesOnLetters(){
     const btns = document.getElementById('qwerty').querySelectorAll('button');
-
     for (let i = 0; i < btns.length; i++){
       btns[i].className = 'key';
       btns[i].disabled= false;
