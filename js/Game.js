@@ -9,7 +9,8 @@
 class Game {
   constructor(){
     this.missed = 0;
-    //A the selection of a phrase objects for the game.
+
+//The selection of a phrase objects for the game.
     this.phrases =[
       {phrase:'Money Talks'},
       {phrase: 'keep it simple'},
@@ -31,7 +32,8 @@ getRandomPhrase(){
 
 
 /**
-* Start Game Methode: Clears the overlay and sets phrase
+* Start Game Methode: Clears the overlay and sets adds the phrase
+*to the display.
 */
   startGame(){
     overlay.style.display = 'none';
@@ -39,13 +41,13 @@ getRandomPhrase(){
     this.activePhrase.addPhraseToDisplay();
     console.log(this.activePhrase);
 
-    //creates an array and then .join('')s it for checkForWin()
-    //see check for win in connection to this line of code
+//creates an array and then .join('')s it for checkForWin()
+//see checkForWin() Game.js line 77 in connection to this line of code
     for (let i=0; i <hiddenLetters.length; i++){
     correctLettersArr.push(hiddenLetters[i].innerText);
     }
     correctLettersArrJoined = correctLettersArr.join('');
-    }
+  }
 
 
 /**
@@ -107,8 +109,6 @@ won */
       this.gameOver(true);
     }
   }
-
-//Everything above works//
 
 /**
 * Displays game over message
