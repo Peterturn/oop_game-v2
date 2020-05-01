@@ -58,15 +58,8 @@ class Phrase {
            }
          }
     //changes the className of virtual keyboard letter as user selects them.
-       if(this.checkLetter(eTarget)){
-        eTarget.className = 'chosen';
-        eTarget.disabled = true;
-        }else{
-        eTarget.className = 'wrong';
-        eTarget.disabled = true;
-        }
+       
      }
-
 
 
 }

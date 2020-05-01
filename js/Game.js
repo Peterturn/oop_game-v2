@@ -57,6 +57,14 @@ getRandomPhrase(){
     this.activePhrase.showMatchedLetter(eTarget);
     this.checkForWin();
     this.removeLife(eTarget);
+    if(this.activePhrase.checkLetter(eTarget)){
+     eTarget.className = 'chosen';
+     eTarget.disabled = true;
+     }else{
+     eTarget.className = 'wrong';
+     eTarget.disabled = true;
+     }
+
   }
 
 
