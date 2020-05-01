@@ -29,5 +29,6 @@ document.querySelectorAll('.key').forEach(item => {
     });
   })
 
-  // Gets letters Shown as they are changed in the CSS
+
+// Gets letters Shown as they are changed in the CSS
 let letterShown = document.getElementsByClassName('show');
