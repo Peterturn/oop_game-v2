@@ -2,131 +2,171 @@
  * Project 4 - OOP Game App
  * Game.js */
 
- //A game consturctor to handle the start and end of the game.
+
+/**
+* A game consturctor to handle the creation of the game
+*/
 class Game {
   constructor(){
     this.missed = 0;
-    //a the selection of a phrase objects for the game.
-    this.phrases =[{phrase:'Money Talks'}, {phrase: 'keep it simple'}, {phrase: 'Show me the money'}, {phrase:'let it go'}, {phrase: 'Holy Cow Batman'}, {phrase: 'Pray Often'} ];
+    //A the selection of a phrase objects for the game.
+    this.phrases =[
+      {phrase:'Money Talks'},
+      {phrase: 'keep it simple'},
+      {phrase: 'Show me the money'},
+      {phrase:'let it go'},
+      {phrase: 'Holy Cow Batman'},
+      {phrase: 'Pray Often'}
+    ];
     this.activePhrase = null;
-    this.correctGuess = true;
   }
 
-// A randomPhrase getter from the array of phrases
-  get randomPhrase(){
+/**
+* Selects randomly from the this.phrases
+*/
+getRandomPhrase(){
     var randomNum = Math.floor(Math.random() * this.phrases.length );
-    var grabPhrase = this.phrases[randomNum].phrase;
-    return grabPhrase;
+    return this.phrases[randomNum];
   }
 
-//Add Notes
 
+/**
+* Start Game Methode: Clears the overlay and sets phrase
+*/
   startGame(){
-    //turns off the start game display
-    startScreen.style.display = 'none';
-    //adds phrase to display
-    aPhrase.addPhraseToDisplay();
-    // //sets currentPhrase
-    // game.currentPhrase = phrase;
+    overlay.style.display = 'none';
+    this.activePhrase = new Phrase(this.getRandomPhrase().phrase);
+    this.activePhrase.addPhraseToDisplay();
+    console.log(this.activePhrase);
 
-    //Logs the phrase to the console.
-    console.log(aPhrase.phrase);
-    /*for-loop pushes letters to an empty array which then .joined by the 'correctLettersArrJoined' and put into a string for easy testing by the checkLetter methode.*/
+    //creates an array and then .join('')s it for checkForWin()
+    //see check for win in connection to this line of code
     for (let i=0; i <hiddenLetters.length; i++){
     correctLettersArr.push(hiddenLetters[i].innerText);
     }
-
-
-    //between 'correctLettersArrJoined' and 'doSomething' a string is created for the checkLetter methode to test and create a boolean value.
     correctLettersArrJoined = correctLettersArr.join('');
-    doSomething = `[${correctLettersArrJoined}]`;
+    }
+
+
+/**
+* Handles onscreen keyboard button clicks
+* @param (HTMLButtonElement) button - The clicked button element
+*/
+  handleInteraction(eTarget){
+    this.activePhrase.checkLetter(eTarget);
+    this.activePhrase.showMatchedLetter(eTarget);
+    this.checkForWin();
+    this.removeLife(eTarget);
   }
 
-  //removes a liveHeart img and replaces it with the lostHeart img.
-  removeLife(){
+
+              //_____HANDLE INTERACTIONS METHODS SECTION_____//
+/**
+ * Checks for winning move
+ * @return {boolean} True if game has been won, false if game wasn't
+won */
+  checkForWin() {
+    if (letterShown.length === correctLettersArrJoined.length){
+          console.log(`checkforwin(): you win`);
+          this.gameOver();
+      }
+    }
+
+/**
+ * Increases the value of the missed property
+ * Removes a life from the scoreboard
+ * Checks if player has remaining lives and ends game if player is out
+ */
+  removeLife(eTarget){
+    if(!this.activePhrase.checkLetter(eTarget))
+    this.missed += 1;
+
     const liveHearts = document.querySelectorAll("img");
     if(this.missed === 1){
       liveHearts[4].src = 'images/lostHeart.png';
-    //  console.log('removeLife1');
     }
     if(this.missed === 2){
       liveHearts[3].src = 'images/lostHeart.png';
-      //console.log('removeLife2');
     }
     if(this.missed === 3){
       liveHearts[2].src = 'images/lostHeart.png';
-      //console.log('removeLife3');
     }
     if(this.missed === 4){
       liveHearts[1].src = 'images/lostHeart.png';
-      //console.log('removeLife4');
     }
     if(this.missed === 5){
       liveHearts[0].src = 'images/lostHeart.png';
-      //console.log('removeLife5');
-      this.gameOver();
+      this.gameOver(true);
     }
   }
 
-  resetHearts(){
-    const liveHearts = document.querySelectorAll("img");
-      for (let i = 0; i < liveHearts.length; i++){
-        liveHearts[i].src = 'images/liveHeart.png';
-        this.missed = 0;
-      }
-  }
-  //Add notes
-  gameOver(){
+//Everything above works//
+
+/**
+* Displays game over message
+* @param {boolean} - checks whether or not the user won the game
+* based on this.missed.
+*/
+  gameOver() {
+    const gameOverMsg = document.getElementById('game-over-message');
     if(this.missed === 5){
-      startScreen.className = 'lose';
-      startScreen.style.display = '';
-      aPhrase.removePhrase();
-      aPhrase.removeClickesOnLetters();
+      gameOverMsg.innerText = "You Lost. No Worries Try Again!";
+      overlay.className = 'lose';
+      overlay.style.display = '';
+      this.removePhrase();
+      this.removeClickesOnLetters();
       this.resetHearts();
       correctLettersArr = [];
-
     }
     else{
-      startScreen.className = 'win';
-      startScreen.style.display = '';
-      aPhrase.removePhrase();
-      aPhrase.removeClickesOnLetters();
+      gameOverMsg.innerText = 'You Win! Wanna Play Again?';
+      overlay.className = 'win';
+      overlay.style.display = '';
+      this.removePhrase();
+      this.removeClickesOnLetters();
       this.resetHearts();
       correctLettersArr = [];
-
     }
   }
 
-//add notes
-  checkForWin(){
+                      //_____RESET GAME METHODS SECTION_____//
 
-      if (letterShown.length === correctLettersArrJoined.length){
-        this.gameOver();
-      }
+/**
+* Creates a ul element
+* Removes old this.activePhrase ul element
+* Appends new ul element into the phrase div area
+*/
+  removePhrase(){
+    const createUl = document.createElement('ul');
+    phraseUl.removeChild(phraseUl.firstElementChild);
+    phraseUl.appendChild(createUl);
   }
 
-  //Handles game interactions
-  handleInteraction(valueOf){
+/**
+* Selects all button elements on the virtual keyboard
+* forLoop clears all the classNames and adds the original classNames back
+* All buttons are re-enabled
+*/
+  removeClickesOnLetters(){
+    const btns = document.getElementById('qwerty').querySelectorAll('button');
 
-    aPhrase.showMatchedLetter(valueOf);
-    if(aPhrase.checkLetter(valueOf)){
-        valueOf.className = 'chosen';
-        valueOf.disabled = true;
-    }else{
-        valueOf.className = 'wrong';
-        valueOf.disabled = true;
+    for (let i = 0; i < btns.length; i++){
+      btns[i].className = 'key';
+      btns[i].disabled= false;
     }
+  }
 
-
-    //const selects className 'wrong'.
-    const keysWrong = document.getElementsByClassName('wrong');
-    /*For-Loop runs throught the keys that have className 'wrong' and adds to the count of 'this.missed'. */
-    for (let i=0; i <keysWrong.length; i++){
-      this.missed = keysWrong.length;
-      console.log(this.missed);
+/**
+* Selects all image elements
+* forLoop all images to original values
+* this.missed is reset to equal = 0
+*/
+  resetHearts(){
+  const liveHearts = document.querySelectorAll("img");
+    for (let i = 0; i < liveHearts.length; i++){
+      liveHearts[i].src = 'images/liveHeart.png';
+      this.missed = 0;
     }
-    this.removeLife();
-    this.checkForWin();
   }
 
 }

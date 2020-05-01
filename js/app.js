@@ -1,47 +1,33 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * app.js */
-                              //_____VAR LIST_____//
-
-                              //NEW CLASS CREATION//
-//on click event is used to set up the new game
-let game = new Game();
-//used to construct and set the current game phrase
-let aPhrase = new Phrase(game.randomPhrase);
-
-
-const phraseUl = document.getElementById('phrase');
-
-const keyBtn = document.querySelectorAll('#qwerty div button');
-const virtualBoardKeys = document.getElementById('qwerty');
-const keys = document.getElementsByClassName('key');
-const keyRows = document.getElementsByClassName('keyrow');
-const startBtn = document.getElementById('btn__reset');
-const startScreen = document.getElementById('overlay');
-// const hiddenLetters returns an array of HTML 'li' items.
-const hiddenLetters = document.getElementsByClassName('hide letter');
-const revealedLetter = document.getElementsByClassName('show');
+                      //_____VAR LIST_____//
+const game = new Game ();
 let correctLettersArr = [];
 let correctLettersArrJoined;
-let doSomething;
 
+                    //_____DOM SELECTORS_____//
+const startButton = document.getElementById('btn__reset');
+const hiddenLetters = document.getElementsByClassName('hide letter');
+const overlay = document.getElementById('overlay');
+const phraseUl = document.getElementById('phrase');
 
+              //____________EVENT HANDLERS____________//
 
-                    //_____START GAME_____//
-startBtn.addEventListener('click', () => {
-  game.startGame();
+                     //_____START GAME_____//
+startButton.addEventListener('click', () => {
+game.startGame();
 });
 
-                  //_____PLAY GAME_____//
+                    //_____PLAY GAME_____//
 //listens for user interactions
 document.querySelectorAll('.key').forEach(item => {
   item.addEventListener('click', event => {
 
-    let valueOf = event.target;
-    game.handleInteraction(valueOf);
-
-  });
+    let eTarget = event.target;
+    game.handleInteraction(eTarget);
+    });
   })
 
   // Gets letters Shown as they are changed in the CSS
-  let letterShown = document.getElementsByClassName('show');
+let letterShown = document.getElementsByClassName('show');
