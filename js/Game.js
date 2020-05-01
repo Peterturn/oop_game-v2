@@ -124,7 +124,7 @@ won */
   gameOver() {
     const gameOverMsg = document.getElementById('game-over-message');
     if(this.missed === 5){
-      gameOverMsg.innerText = "You Lost. No Worries Try Again!";
+      gameOverMsg.innerText = "You Lost. No Worries - Try Again!";
       overlay.className = 'lose';
       overlay.style.display = '';
       this.removePhrase(); //Game.js line 154

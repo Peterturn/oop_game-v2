@@ -35,14 +35,14 @@ class Phrase {
          return true;
       }else{
          return false;
-     }
-   }
+      }
+    }
 
-   /**
-    * Displays passed letter on screen after a match is found
-    * @param (string) eTarget - Letter to display
-    */
-   showMatchedLetter(eTarget){
+/**
+* Displays passed letter on screen after a match is found
+* @param (string) eTarget - Letter to display
+*/
+  showMatchedLetter(eTarget){
        //forLoop runs though the 'li' array and shows matched letter on click event.
        for (let i=0; i <hiddenLetters.length; i++){
          if(hiddenLetters[i].innerText === eTarget.textContent){
@@ -51,7 +51,7 @@ class Phrase {
           }
         }
      /**
-     *2nd forLoop passesover the new list of hiddenLetters. 
+     *2nd forLoop passesover the new list of hiddenLetters.
      *The second loop is there for dynamic programing should someone
      *add a double letter word. If 2 identical letter i.e. 'tt, ss...' are present
      *in the hidden phrase the fist letter is removed from the array and the
